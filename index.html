@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bossnova Art | Digital Link Tree</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --primary-gold: #c5a028;
+            --secondary-gold: #f0d58e;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #111111, #050505);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* Header Bölümü ve Logo Animasyonu */
+        .header {
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+        }
+
+        .header img {
+            width: 100%;
+            max-width: 250px;
+            filter: drop-shadow(0 10px 20px rgba(197, 160, 40, 0.15));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); filter: drop-shadow(0 15px 25px rgba(197, 160, 40, 0.25)); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Kart Yapısı */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .links-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .header img {
+
+            max-width: 500px;
+            filter: drop-shadow(0 10px 20px rgba(197, 160, 40, 0.15));
+            animation: float 6s ease-in-out infinite;
+        }
+        }
+
+        .link-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            text-align: left;
+            gap: 18px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Shine (Parlama) Efekti */
+        .link-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(197, 160, 40, 0.1), transparent);
+            transform: skewX(-25deg);
+            transition: 0.7s;
+        }
+
+        .link-item:hover {
+            border-color: rgba(197, 160, 40, 0.5);
+            transform: translateY(-5px);
+            background: rgba(30, 30, 30, 0.8);
+            box-shadow: 0 10px 25px rgba(197, 160, 40, 0.15);
+        }
+
+        .link-item:hover::before {
+            left: 200%;
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(145deg, #1f1f1f, #141414);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--primary-gold);
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .link-item:hover .icon-box {
+            background: var(--primary-gold);
+            color: #000;
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .content {
+            flex-grow: 1;
+        }
+
+        .content b {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .content span {
+            font-size: 12px;
+            color: var(--text-dim);
+            font-weight: 300;
+        }
+
+        .arrow {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .link-item:hover .arrow {
+            color: var(--primary-gold);
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            font-size: 11px;
+            color: #555;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .designer {
+            color: var(--primary-gold);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .designer:hover {
+            text-shadow: 0 0 8px rgba(197, 160, 40, 0.5);
+        }
+
+        /* Başlangıç Animasyonu */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="header">
+            <img src="https://bossnovaart.com/cdn/shop/files/logo_2_0972e45c-5a93-4231-ac01-8e5528ce6672.png?v=1776255344&width=440" alt="Bossnova Art">
+        </div>
+
+        <div class="links-grid">
+            <a href="https://bossnovaart.com" target="_blank" class="link-item">
+                <div class="icon-box"><i class="fas fa-globe"></i></div>
+                <div class="content">
+                    <b>Web Sitemiz</b>
+                    <span>bossnovaart.com</span>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="https://www.instagram.com/bossanovarting/" target="_blank" class="link-item">
+                <div class="icon-box"><i class="fab fa-instagram"></i></div>
+                <div class="content">
+                    <b>Instagram</b>
+                    <span>@bossanovarting</span>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="tel:+905449583083" class="link-item">
+                <div class="icon-box"><i class="fas fa-phone"></i></div>
+                <div class="content">
+                    <b>Bizi Arayın</b>
+                    <span>+90 (544) 958 30 83</span>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <a href="tel:+905442893885" class="link-item">
+                <div class="icon-box"><i class="fas fa-phone"></i></div>
+                <div class="content">
+                    <b>Bizi Arayın</b>
+                    <span>+90 (544) 289 38 85</span>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+        </div>
+
+
+    </div>
+
+</body>
+</html>
